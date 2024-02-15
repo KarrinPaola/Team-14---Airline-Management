@@ -1,5 +1,4 @@
 package AirlineManager;
-
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
