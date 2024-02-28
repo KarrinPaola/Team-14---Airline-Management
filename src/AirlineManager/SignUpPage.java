@@ -125,39 +125,35 @@ public class SignUpPage extends JFrame {
 				// TODO Auto-generated method stub
 				Connection connection = null;
 				PreparedStatement statement = null; 
-				java.sql.Statement statement2 = null; 
+				java.sql.Statement createTableStatement = null; 
 				List<User> users = new ArrayList<>(); 
 				
 				String UserName = textField_username.getText(); 
 				String UserPassword = textField_password.getText();
 				String reInputPassword = textField_reInputPassword.getText(); 
-				String UserID = ""; 
 				
 				try {
 					connection = DriverManager.getConnection("jdbc:mysql://localhost:3308/AirlineManagement","root", "");
 					
-					statement2 = connection.createStatement(); 
-					String sqlString = "select * from User_Password"; 
-					ResultSet resultset = statement2.executeQuery(sqlString); 
 					
-					while (resultset.next()) {
-						User user = new User(
-								resultset.getString("UserName"), 
-								resultset.getString("UserPassword"), 
-								resultset.getString("UserID")
-						); 
-						users.add(user);
-					}
-					
-					UserID = String.format("%03d", users.size());
-					
-					String sql = "insert into User_Password(UserName, UserPassword, UserID)" + "values(?,?,?)"; 
+					String sql = "insert into User_Password(UserName, UserPassword)" + "values(?,?)"; 
 					
 					statement = connection.prepareStatement(sql); 
 					
 					statement.setString(1, UserName.toLowerCase()); 
 					statement.setString(2, UserPassword); 
-					statement.setString(3, UserID); 
+					
+					String createTableQuery = "CREATE TABLE IF NOT EXISTS " + UserName.toLowerCase() + " ("
+	                        + "ID INT AUTO_INCREMENT PRIMARY KEY,"
+	                        + "StartingPoint VARCHAR(100) NOT NULL,"
+	                        + "Destination VARCHAR(100) NOT NULL,"
+	                        + "DepartureTime VARCHAR(50) NOT NULL,"
+	                        + "TicketClass VARCHAR(50) NOT NULL,"
+	                        + "TicketType VARCHAR(50) NOT NULL"
+	                        + ")";
+					
+					createTableStatement = connection.createStatement();
+					createTableStatement.executeUpdate(createTableQuery);
 					
 					
 					if(UserPassword.length() >= 6 && UserPassword.equals(reInputPassword)) {
@@ -179,14 +175,6 @@ public class SignUpPage extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} finally {
-					if (statement2 != null) {
-						try {
-							statement2.close();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} 
-					}
 					if(statement != null) {
 						try {
 							statement.close();

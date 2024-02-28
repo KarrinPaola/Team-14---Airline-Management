@@ -106,7 +106,9 @@ public class LoginPage extends JFrame{
 					
 					if(resultset.next()) {
 						dispose(); 
-						JOptionPane.showMessageDialog(null, "Bạn đã đăng nhập thành công!", "title", JOptionPane.INFORMATION_MESSAGE);
+						MainPage mainPage = new MainPage(); 
+						mainPage.setUserName(userName);
+						mainPage.setVisible(true); 
 					}else {
 						JOptionPane.showMessageDialog(null, "Sai mật khẩu hoặc tên đăng nhập!", "title", JOptionPane.INFORMATION_MESSAGE);
 						textField_Username.setText(""); 

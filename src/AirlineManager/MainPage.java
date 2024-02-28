@@ -17,6 +17,7 @@ public class MainPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private String userName = ""; 
 	
 	/**
 	 * Launch the application.
@@ -51,6 +52,11 @@ public class MainPage extends JFrame {
 		tableFlightBooked.setBounds(230, 7, 610, 445);
 		tableFlightBooked.setVisible(false);
 		
+		BookingFlightPanel2 bookingFlightPanel2 = new BookingFlightPanel2(); 
+		contentPane.add(bookingFlightPanel2); 
+		bookingFlightPanel2.setBounds(230, 7, 610, 445);
+		bookingFlightPanel2.setVisible(false);
+		
 		JPanel MainPanel = new JPanel();
 		MainPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		MainPanel.setBounds(230, 7, 610, 445);
@@ -70,6 +76,16 @@ public class MainPage extends JFrame {
 		});
 		BookingButton.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 15));
 		BookingButton.setBounds(35, 100, 150, 50);
+		BookingButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bookingFlightPanel2.setVisible(true);
+				tableFlightBooked.setVisible(false);
+				bookingFlightPanel2.setUserName(userName);
+				
+			}
+		});
 		ListButtonPanel.add(BookingButton);
 		
 		JButton ListFlightButton = new JButton("Các chuyến bay");
@@ -80,6 +96,8 @@ public class MainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFlightBooked.setVisible(true);
+				bookingFlightPanel2.setVisible(false);
+				tableFlightBooked.setUserName(userName);
 				
 			}
 		});
@@ -92,4 +110,13 @@ public class MainPage extends JFrame {
 		
 		
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 }
