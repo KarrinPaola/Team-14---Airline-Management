@@ -9,11 +9,12 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class TableFlightBooked extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textField;
+    private JTextField textField_InputFlightCancel;
 
     /**
      * Create the panel.
@@ -39,18 +40,22 @@ public class TableFlightBooked extends JPanel {
         AnnoucementLabel.setBounds(46, 22, 516, 29);
         add(AnnoucementLabel);
         
-        JLabel lblNewLabel = new JLabel("Chuyến bay muốn huỷ:");
-        lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-        lblNewLabel.setBounds(80, 414, 171, 20);
-        add(lblNewLabel);
+        JLabel CancelLabel = new JLabel("Chuyến bay muốn huỷ:");
+        CancelLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        CancelLabel.setBounds(11, 390, 171, 20);
+        add(CancelLabel);
         
-        textField = new JTextField();
-        textField.setBounds(248, 409, 130, 30);
-        add(textField);
-        textField.setColumns(10);
+        textField_InputFlightCancel = new JTextField();
+        textField_InputFlightCancel.setBounds(6, 410, 176, 30);
+        add(textField_InputFlightCancel);
+        textField_InputFlightCancel.setColumns(10);
         
-        JButton btnNewButton = new JButton("Huỷ chuyến");
-        btnNewButton.setBounds(388, 409, 117, 30);
-        add(btnNewButton);
+        JButton CancelFlightButton = new JButton("Huỷ chuyến");
+        CancelFlightButton.setBounds(180, 410, 117, 30);
+        add(CancelFlightButton);
+        
+        JButton ShowAllButton = new JButton("Show All");
+        ShowAllButton.setBounds(472, 395, 132, 42);
+        add(ShowAllButton);
     }
 }
