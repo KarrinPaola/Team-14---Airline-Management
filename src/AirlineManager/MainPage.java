@@ -17,7 +17,7 @@ public class MainPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -46,6 +46,17 @@ public class MainPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		TableFlightBooked tableFlightBooked = new TableFlightBooked(); 
+		contentPane.add(tableFlightBooked); 
+		tableFlightBooked.setBounds(230, 7, 610, 445);
+		tableFlightBooked.setVisible(false);
+		
+		JPanel MainPanel = new JPanel();
+		MainPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		MainPanel.setBounds(230, 7, 610, 445);
+		contentPane.add(MainPanel);
+		MainPanel.setLayout(null);
+		
 		JPanel ListButtonPanel = new JPanel();
 		ListButtonPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ListButtonPanel.setBounds(6, 6, 215, 445);
@@ -64,6 +75,14 @@ public class MainPage extends JFrame {
 		JButton ListFlightButton = new JButton("Các chuyến bay");
 		ListFlightButton.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 15));
 		ListFlightButton.setBounds(35, 200, 150, 50);
+		ListFlightButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tableFlightBooked.setVisible(true);
+				
+			}
+		});
 		ListButtonPanel.add(ListFlightButton);
 		
 		JButton AccountButton = new JButton("Tài khoản ");
@@ -71,10 +90,6 @@ public class MainPage extends JFrame {
 		AccountButton.setBounds(35, 300, 150, 50);
 		ListButtonPanel.add(AccountButton);
 		
-		JPanel MainPanel = new JPanel();
-		MainPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		MainPanel.setBounds(230, 7, 610, 445);
-		contentPane.add(MainPanel);
-		MainPanel.setLayout(null);
+		
 	}
 }
