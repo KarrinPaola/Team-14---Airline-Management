@@ -6,14 +6,17 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
 
 public class fillInformationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textFieldName;
+	private JTextField textFieldPhoneNumber;
+	private JTextField textFieldEmail;
+	private JTextField textFieldCMND;
 
 	/**
 	 * Create the panel.
@@ -28,60 +31,72 @@ public class fillInformationPanel extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Họ và tên");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel.setBounds(10, 10, 128, 30);
-		panel.add(lblNewLabel);
+		JLabel labelName = new JLabel("Họ và tên");
+		labelName.setFont(new Font("Arial", Font.BOLD, 20));
+		labelName.setBounds(10, 10, 128, 30);
+		panel.add(labelName);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ngày");
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(10, 119, 50, 36);
-		panel.add(lblNewLabel_1);
+		JLabel labelDay = new JLabel("Ngày");
+		labelDay.setFont(new Font("Arial", Font.BOLD, 15));
+		labelDay.setBounds(10, 120, 50, 35);
+		panel.add(labelDay);
 		
-		JLabel lblNewLabel_2 = new JLabel("Tháng");
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(148, 119, 50, 36);
-		panel.add(lblNewLabel_2);
+		JLabel labelMonth = new JLabel("Tháng");
+		labelMonth.setFont(new Font("Arial", Font.BOLD, 15));
+		labelMonth.setBounds(115, 120, 50, 35);
+		panel.add(labelMonth);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Năm");
-		lblNewLabel_2_1.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNewLabel_2_1.setBounds(80, 178, 50, 36);
-		panel.add(lblNewLabel_2_1);
+		JLabel labelYear = new JLabel("Năm");
+		labelYear.setFont(new Font("Arial", Font.BOLD, 15));
+		labelYear.setBounds(230, 119, 50, 35);
+		panel.add(labelYear);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("New label");
-		lblNewLabel_2_2.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_2.setBounds(10, 252, 128, 30);
-		panel.add(lblNewLabel_2_2);
+		JLabel labelPhoneNumber = new JLabel("Số điện thoại");
+		labelPhoneNumber.setFont(new Font("Arial", Font.BOLD, 20));
+		labelPhoneNumber.setBounds(10, 195, 128, 30);
+		panel.add(labelPhoneNumber);
 		
-		JLabel lblNewLabel_2_3 = new JLabel("New label");
-		lblNewLabel_2_3.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_3.setBounds(10, 442, 128, 30);
-		panel.add(lblNewLabel_2_3);
+		JLabel labelCMND = new JLabel("CMND/CCCD");
+		labelCMND.setFont(new Font("Arial", Font.BOLD, 20));
+		labelCMND.setBounds(10, 415, 128, 30);
+		panel.add(labelCMND);
 		
-		JLabel lblNewLabel_2_4 = new JLabel("New label");
-		lblNewLabel_2_4.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_4.setBounds(10, 345, 128, 30);
-		panel.add(lblNewLabel_2_4);
+		JLabel labelEmail = new JLabel("Email");
+		labelEmail.setFont(new Font("Arial", Font.BOLD, 20));
+		labelEmail.setBounds(10, 305, 128, 30);
+		panel.add(labelEmail);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 40, 330, 40);
-		panel.add(textField);
-		textField.setColumns(10);
+		textFieldName = new JTextField();
+		textFieldName.setBounds(10, 40, 330, 40);
+		panel.add(textFieldName);
+		textFieldName.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(58, 120, 80, 36);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		JComboBox comboBoxDay = new JComboBox();
+		comboBoxDay.setBounds(55, 126, 50, 25);
+		panel.add(comboBoxDay);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(208, 120, 80, 36);
-		panel.add(textField_2);
+		JComboBox comboBoxMonth = new JComboBox();
+		comboBoxMonth.setBounds(170, 126, 50, 25);
+		panel.add(comboBoxMonth);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(140, 179, 80, 36);
-		panel.add(textField_3);
+		JComboBox comboBoxYear = new JComboBox();
+		comboBoxYear.setBounds(275, 126, 50, 25);
+		panel.add(comboBoxYear);
+		
+		textFieldPhoneNumber = new JTextField();
+		textFieldPhoneNumber.setColumns(10);
+		textFieldPhoneNumber.setBounds(10, 225, 330, 40);
+		panel.add(textFieldPhoneNumber);
+		
+		textFieldEmail = new JTextField();
+		textFieldEmail.setColumns(10);
+		textFieldEmail.setBounds(10, 335, 330, 40);
+		panel.add(textFieldEmail);
+		
+		textFieldCMND = new JTextField();
+		textFieldCMND.setColumns(10);
+		textFieldCMND.setBounds(10, 445, 330, 40);
+		panel.add(textFieldCMND);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -89,35 +104,40 @@ public class fillInformationPanel extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_2_5 = new JLabel("New label");
-		lblNewLabel_2_5.setBounds(130, 7, 90, 24);
-		lblNewLabel_2_5.setFont(new Font("Arial", Font.BOLD, 20));
-		panel_1.add(lblNewLabel_2_5);
+		JLabel labelSeatClass = new JLabel("Hạng ghế");
+		labelSeatClass.setFont(new Font("Arial", Font.BOLD, 20));
+		labelSeatClass.setBounds(10, 15, 128, 30);
+		panel_1.add(labelSeatClass);
 		
-		JLabel lblNewLabel_2_4_1 = new JLabel("New label");
-		lblNewLabel_2_4_1.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_4_1.setBounds(65, 146, 128, 36);
-		panel_1.add(lblNewLabel_2_4_1);
+		JCheckBox checkBoxNormal = new JCheckBox("Thường");
+		checkBoxNormal.setFont(new Font("Arial", Font.BOLD, 20));
+		checkBoxNormal.setBounds(10, 50, 132, 36);
+		panel_1.add(checkBoxNormal);
 		
-		JLabel lblNewLabel_2_4_2 = new JLabel("New label");
-		lblNewLabel_2_4_2.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_4_2.setBounds(65, 210, 128, 36);
-		panel_1.add(lblNewLabel_2_4_2);
+		JCheckBox checkBoxMerchant = new JCheckBox("Thương gia");
+		checkBoxMerchant.setFont(new Font("Arial", Font.BOLD, 20));
+		checkBoxMerchant.setBounds(160, 50, 180, 36);
+		panel_1.add(checkBoxMerchant);
 		
-		JLabel lblNewLabel_2_4_3 = new JLabel("New label");
-		lblNewLabel_2_4_3.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_4_3.setBounds(75, 257, 128, 36);
-		panel_1.add(lblNewLabel_2_4_3);
+		JLabel labelTicketType = new JLabel("Loại vé");
+		labelTicketType.setFont(new Font("Arial", Font.BOLD, 20));
+		labelTicketType.setBounds(10, 125, 128, 30);
+		panel_1.add(labelTicketType);
 		
-		JLabel lblNewLabel_2_4_4 = new JLabel("New label");
-		lblNewLabel_2_4_4.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_4_4.setBounds(37, 304, 128, 36);
-		panel_1.add(lblNewLabel_2_4_4);
+		JCheckBox checkBoxOneWay = new JCheckBox("Một chiều");
+		checkBoxOneWay.setFont(new Font("Arial", Font.BOLD, 20));
+		checkBoxOneWay.setBounds(10, 162, 128, 36);
+		panel_1.add(checkBoxOneWay);
 		
-		JLabel lblNewLabel_2_4_5 = new JLabel("New label");
-		lblNewLabel_2_4_5.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel_2_4_5.setBounds(65, 365, 128, 36);
-		panel_1.add(lblNewLabel_2_4_5);
+		JCheckBox checkBoxRoundTrip = new JCheckBox("Khứ hồi");
+		checkBoxRoundTrip.setFont(new Font("Arial", Font.BOLD, 20));
+		checkBoxRoundTrip.setBounds(160, 162, 137, 36);
+		panel_1.add(checkBoxRoundTrip);
+		
+		JButton buttonConfirm = new JButton("Xác nhận");
+		buttonConfirm.setFont(new Font("Arial", Font.BOLD, 20));
+		buttonConfirm.setBounds(100, 250, 150, 41);
+		panel_1.add(buttonConfirm);
 
 	}
 }
