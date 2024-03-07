@@ -38,17 +38,17 @@ public class fillInformationPanel extends JPanel {
 		
 		JLabel labelDay = new JLabel("Ngày");
 		labelDay.setFont(new Font("Arial", Font.BOLD, 15));
-		labelDay.setBounds(10, 120, 50, 35);
+		labelDay.setBounds(10, 120, 43, 35);
 		panel.add(labelDay);
 		
 		JLabel labelMonth = new JLabel("Tháng");
 		labelMonth.setFont(new Font("Arial", Font.BOLD, 15));
-		labelMonth.setBounds(115, 120, 50, 35);
+		labelMonth.setBounds(120, 120, 50, 35);
 		panel.add(labelMonth);
 		
 		JLabel labelYear = new JLabel("Năm");
 		labelYear.setFont(new Font("Arial", Font.BOLD, 15));
-		labelYear.setBounds(230, 119, 50, 35);
+		labelYear.setBounds(238, 120, 50, 35);
 		panel.add(labelYear);
 		
 		JLabel labelPhoneNumber = new JLabel("Số điện thoại");
@@ -72,16 +72,8 @@ public class fillInformationPanel extends JPanel {
 		textFieldName.setColumns(10);
 		
 		JComboBox comboBoxDay = new JComboBox();
-		comboBoxDay.setBounds(55, 126, 50, 25);
+		comboBoxDay.setBounds(48, 124, 65, 29);
 		panel.add(comboBoxDay);
-		
-		JComboBox comboBoxMonth = new JComboBox();
-		comboBoxMonth.setBounds(170, 126, 50, 25);
-		panel.add(comboBoxMonth);
-		
-		JComboBox comboBoxYear = new JComboBox();
-		comboBoxYear.setBounds(275, 126, 50, 25);
-		panel.add(comboBoxYear);
 		
 		textFieldPhoneNumber = new JTextField();
 		textFieldPhoneNumber.setColumns(10);
@@ -97,6 +89,15 @@ public class fillInformationPanel extends JPanel {
 		textFieldCMND.setColumns(10);
 		textFieldCMND.setBounds(10, 445, 330, 40);
 		panel.add(textFieldCMND);
+		
+		JComboBox comboBoxDay_1 = new JComboBox();
+		comboBoxDay_1.setBounds(169, 124, 65, 29);
+		panel.add(comboBoxDay_1);
+		
+		JComboBox comboBoxDay_2 = new JComboBox();
+		comboBoxDay_2.setToolTipText("");
+		comboBoxDay_2.setBounds(275, 124, 65, 29);
+		panel.add(comboBoxDay_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
