@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class MainPage extends JFrame {
 
@@ -32,11 +34,24 @@ public class MainPage extends JFrame {
 	 */
 	public MainPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(0, 0, 900, 628);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		PanelSignUp panelSignUp = new PanelSignUp(); 
+		panelSignUp.setVisible(true);
+		panelSignUp.setBounds(0, 0, 900, 600);;
+		contentPane.add(panelSignUp); 
+		
+		ListButton listButton = new ListButton(); 
+		listButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		listButton.setVisible(false);
+		contentPane.add(listButton); 
+		listButton.setBounds(0, 0, 200, 600);
+		
+		
 	}
 
 }
