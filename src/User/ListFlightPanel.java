@@ -88,9 +88,9 @@ public class ListFlightPanel extends JPanel {
 		tableListFlight.getColumnModel().getColumn(3).setPreferredWidth(80);
 		tableListFlight.getColumnModel().getColumn(4).setPreferredWidth(77);
 		
-		JButton buttonSelectFlight = new JButton("Chọn chuyến");
-		buttonSelectFlight.setFont(new Font("Arial", Font.BOLD, 15));
-		buttonSelectFlight.setBounds(529, 549, 131, 40);
-		add(buttonSelectFlight);
+//		JButton buttonSelectFlight = new JButton("Chọn chuyến");
+//		buttonSelectFlight.setFont(new Font("Arial", Font.BOLD, 15));
+//		buttonSelectFlight.setBounds(529, 549, 131, 40);
+//		add(buttonSelectFlight);
 	}
 }
