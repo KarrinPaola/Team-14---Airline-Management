@@ -127,6 +127,7 @@ public class LoginPage extends JFrame {
 								MainPage mainPage = new MainPage(); 
 								mainPage.setVisible(true); 
 								mainPage.setUsername(username); 
+								mainPage.setTypeAccount(typeAccount); 
 								dispose(); 
 							}else {
 								System.out.println("Dấm dớ");
@@ -152,6 +153,13 @@ public class LoginPage extends JFrame {
 		panelMain.add(buttonLogin);
 		
 		JButton buttonSignUp = new JButton("Đăng ký");
+		buttonSignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SignUpFrame signUpFrame = new SignUpFrame(); 
+				signUpFrame.setVisible(true);
+				dispose();
+			}
+		});
 		buttonSignUp.setFont(new Font("Arial", Font.ITALIC, 13));
 		buttonSignUp.setBounds(344, 364, 150, 30);
 		panelMain.add(buttonSignUp);

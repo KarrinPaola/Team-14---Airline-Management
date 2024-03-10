@@ -159,7 +159,7 @@ public class SignUpFrame extends JFrame {
 				                statement.execute(); 
 
 				                // Tạo bảng mới cho tài khoản
-				                String createTableQuery = "CREATE TABLE IF NOT EXISTS " + username + "_Info (ID INT AUTO_INCREMENT PRIMARY KEY)";
+				                String createTableQuery = "CREATE TABLE IF NOT EXISTS " + username + "_Info (ID INT AUTO_INCREMENT PRIMARY KEY, TypeTicket VARCHAR(255), ClassSeat VARCHAR(255))";
 				                statement2 = connection.createStatement();
 				                statement2.execute(createTableQuery);
 				                

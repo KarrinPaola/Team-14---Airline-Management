@@ -14,6 +14,7 @@ public class ListFlight extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTextField textFieldFlightCancellation;
+	private String flightCancelled = ""; 
 
 	/**
 	 * Create the panel.
@@ -76,6 +77,7 @@ public class ListFlight extends JPanel {
 		textFieldFlightCancellation.setBounds(265, 545, 197, 36);
 		add(textFieldFlightCancellation);
 		textFieldFlightCancellation.setColumns(10);
+		flightCancelled = textFieldFlightCancellation.getText(); 
 		
 		JButton buttonFlightCancellation = new JButton("Hủy chuyến");
 		buttonFlightCancellation.setFont(new Font("Arial", Font.BOLD, 20));
@@ -85,5 +87,13 @@ public class ListFlight extends JPanel {
 		table.getColumnModel().getColumn(1).setPreferredWidth(110);
 		table.getColumnModel().getColumn(2).setPreferredWidth(110);
 
+	}
+
+	public String getFlightCancelled() {
+		return flightCancelled;
+	}
+
+	public void setFlightCancelled(String flightCancelled) {
+		this.flightCancelled = flightCancelled;
 	}
 }

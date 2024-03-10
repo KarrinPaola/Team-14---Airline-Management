@@ -56,8 +56,6 @@ public class ListFlightPanel extends JPanel {
 		
 		tableListFlight = new JTable();
 		scrollPaneListFlight.setViewportView(tableListFlight);
-		tableListFlight.setColumnSelectionAllowed(true);
-		tableListFlight.setCellSelectionEnabled(true);
 		tableListFlight.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null},

@@ -5,6 +5,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -43,12 +46,12 @@ public class fillInformationPanel extends JPanel {
 		
 		JLabel labelMonth = new JLabel("Tháng");
 		labelMonth.setFont(new Font("Arial", Font.BOLD, 15));
-		labelMonth.setBounds(120, 120, 50, 35);
+		labelMonth.setBounds(110, 120, 50, 35);
 		panel.add(labelMonth);
 		
 		JLabel labelYear = new JLabel("Năm");
 		labelYear.setFont(new Font("Arial", Font.BOLD, 15));
-		labelYear.setBounds(238, 120, 50, 35);
+		labelYear.setBounds(220, 120, 50, 35);
 		panel.add(labelYear);
 		
 		JLabel labelPhoneNumber = new JLabel("Số điện thoại");
@@ -70,10 +73,31 @@ public class fillInformationPanel extends JPanel {
 		textFieldName.setBounds(10, 40, 330, 40);
 		panel.add(textFieldName);
 		textFieldName.setColumns(10);
-		
-		JComboBox comboBoxDay = new JComboBox();
-		comboBoxDay.setBounds(48, 124, 65, 29);
+
+		JComboBox<String> comboBoxDay = new JComboBox<String>();
+		comboBoxDay.setBounds(45, 124, 60, 29);
 		panel.add(comboBoxDay);
+		for (int i = 1; i <= 31; i++) {
+		    comboBoxDay.addItem(String.valueOf(i));
+		}
+
+		JComboBox<String> comboBoxMonth = new JComboBox<String>();
+		comboBoxMonth.setBounds(155, 124, 60, 29);
+		panel.add(comboBoxMonth);
+		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		for (String month : months) {
+		    comboBoxMonth.addItem(month);
+		}
+
+		JComboBox<String> comboBoxYear = new JComboBox<String>();
+		comboBoxYear.setToolTipText("");
+		comboBoxYear.setBounds(252, 124, 90, 29);
+		panel.add(comboBoxYear);
+		int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+		for (int i = 1900; i <= currentYear; i++) {
+		    comboBoxYear.addItem(String.valueOf(i));
+		}
+
 		
 		textFieldPhoneNumber = new JTextField();
 		textFieldPhoneNumber.setColumns(10);
@@ -89,15 +113,6 @@ public class fillInformationPanel extends JPanel {
 		textFieldCMND.setColumns(10);
 		textFieldCMND.setBounds(10, 445, 330, 40);
 		panel.add(textFieldCMND);
-		
-		JComboBox comboBoxDay_1 = new JComboBox();
-		comboBoxDay_1.setBounds(169, 124, 65, 29);
-		panel.add(comboBoxDay_1);
-		
-		JComboBox comboBoxDay_2 = new JComboBox();
-		comboBoxDay_2.setToolTipText("");
-		comboBoxDay_2.setBounds(275, 124, 65, 29);
-		panel.add(comboBoxDay_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -120,6 +135,27 @@ public class fillInformationPanel extends JPanel {
 		checkBoxMerchant.setBounds(160, 50, 180, 36);
 		panel_1.add(checkBoxMerchant);
 		
+		checkBoxNormal.addItemListener(new ItemListener() {
+		    public void itemStateChanged(ItemEvent e) {
+		        if (e.getStateChange() == ItemEvent.SELECTED) {
+		            checkBoxMerchant.setEnabled(false);
+		        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+		            checkBoxMerchant.setEnabled(true);
+		        }
+		    }
+		});
+
+		checkBoxMerchant.addItemListener(new ItemListener() {
+		    public void itemStateChanged(ItemEvent e) {
+		        if (e.getStateChange() == ItemEvent.SELECTED) {
+		            checkBoxNormal.setEnabled(false);
+		        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+		            checkBoxNormal.setEnabled(true);
+		        }
+		    }
+		});
+
+		
 		JLabel labelTicketType = new JLabel("Loại vé");
 		labelTicketType.setFont(new Font("Arial", Font.BOLD, 20));
 		labelTicketType.setBounds(10, 125, 128, 30);
@@ -134,6 +170,27 @@ public class fillInformationPanel extends JPanel {
 		checkBoxRoundTrip.setFont(new Font("Arial", Font.BOLD, 20));
 		checkBoxRoundTrip.setBounds(160, 162, 137, 36);
 		panel_1.add(checkBoxRoundTrip);
+		
+		checkBoxOneWay.addItemListener(new ItemListener() {
+		    public void itemStateChanged(ItemEvent e) {
+		        if (e.getStateChange() == ItemEvent.SELECTED) {
+		            checkBoxRoundTrip.setEnabled(false);
+		        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+		            checkBoxRoundTrip.setEnabled(true);
+		        }
+		    }
+		});
+
+		checkBoxRoundTrip.addItemListener(new ItemListener() {
+		    public void itemStateChanged(ItemEvent e) {
+		        if (e.getStateChange() == ItemEvent.SELECTED) {
+		            checkBoxOneWay.setEnabled(false);
+		        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+		            checkBoxOneWay.setEnabled(true);
+		        }
+		    }
+		});
+
 		
 		JButton buttonConfirm = new JButton("Xác nhận");
 		buttonConfirm.setFont(new Font("Arial", Font.BOLD, 20));
