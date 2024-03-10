@@ -126,6 +126,7 @@ public class LoginPage extends JFrame {
 							if(resultSet.next()) {
 								MainPage mainPage = new MainPage(); 
 								mainPage.setVisible(true); 
+								mainPage.setUsername(username); 
 								dispose(); 
 							}else {
 								System.out.println("Dấm dớ");

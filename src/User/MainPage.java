@@ -7,12 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.Font;
 
 public class MainPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private String username = ""; 
 	/**
 	 * Launch the application.
 	 */
@@ -41,10 +43,38 @@ public class MainPage extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		ListButton listButton = new ListButton(); 
-		contentPane.add(listButton); 
-		listButton.setBounds(0, 0, 200, 600);
-		listButton.setVisible(true);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(0, 0, 200, 600);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JButton buttonBookFlight = new JButton("Đặt chuyến");
+		buttonBookFlight.setFont(new Font("Arial", Font.BOLD, 22));
+		buttonBookFlight.setBounds(10, 61, 180, 80);
+		panel.add(buttonBookFlight);
+		
+		JButton buttonListFlight = new JButton("Xem chuyến");
+		buttonListFlight.setFont(new Font("Arial", Font.BOLD, 22));
+		buttonListFlight.setBounds(10, 261, 180, 80);
+		panel.add(buttonListFlight);
+		
+		JButton buttonAccount = new JButton("Tài khoản");
+		buttonAccount.setFont(new Font("Arial", Font.BOLD, 22));
+		buttonAccount.setBounds(10, 461, 180, 80);
+		panel.add(buttonAccount);
+		
+		
+		
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
