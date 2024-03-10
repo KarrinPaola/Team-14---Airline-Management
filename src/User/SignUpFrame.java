@@ -1,12 +1,11 @@
 package User;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import com.mysql.cj.protocol.ValueDecoder;
-import com.mysql.cj.xdevapi.PreparableStatement;
-import com.mysql.cj.xdevapi.Statement;
-
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,8 +13,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,25 +23,47 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class PanelSignUp extends JPanel {
+public class SignUpFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
 	private JTextField textField_username;
 	private JPasswordField passwordField_firsttime;
 	private JPasswordField passwordField_secondtime;
 
 	/**
-	 * Create the panel.
+	 * Launch the application.
 	 */
-	public PanelSignUp() {
-		this.setBounds(0, 0, 900, 600);
-		setLayout(null);
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SignUpFrame frame = new SignUpFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public SignUpFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 900, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panelMain = new JPanel();
 		panelMain.setLayout(null);
 		panelMain.setBorder(new LineBorder(new Color(0, 0, 0),3));
-		panelMain.setBounds(199, 50, 500, 492);
-		add(panelMain);
+		panelMain.setBounds(189, 40, 500, 492);
+		contentPane.add(panelMain);
 		
 		JLabel labelUsername = new JLabel("Tên đăng nhập");
 		labelUsername.setFont(new Font("Arial", Font.BOLD, 20));
@@ -78,7 +99,7 @@ public class PanelSignUp extends JPanel {
 		panelMain.add(passwordField_secondtime);
 		
 		String[] typeAccount = {"","Người dùng", "Nhà quản lý"};
-		JComboBox<String> comboBox_typeAccount = new JComboBox<>(typeAccount);
+		JComboBox<String> comboBox_typeAccount = new JComboBox<String>(typeAccount);
 		comboBox_typeAccount.setBounds(133, 45, 170, 40);
 		panelMain.add(comboBox_typeAccount);
 		
@@ -141,6 +162,8 @@ public class PanelSignUp extends JPanel {
 				                String createTableQuery = "CREATE TABLE IF NOT EXISTS " + username + "_Info (ID INT AUTO_INCREMENT PRIMARY KEY)";
 				                statement2 = connection.createStatement();
 				                statement2.execute(createTableQuery);
+				                
+				                
 				            }
 				        } catch (SQLException e1) {
 				            e1.printStackTrace();
@@ -192,7 +215,6 @@ public class PanelSignUp extends JPanel {
 			        }
 			    }
 			}
-
 		});
 		buttonSignUp.setFont(new Font("Arial", Font.BOLD, 20));
 		buttonSignUp.setBounds(175, 430, 170, 40);
@@ -208,4 +230,5 @@ public class PanelSignUp extends JPanel {
 		lblmtKhuPhi.setBounds(50, 280, 395, 20);
 		panelMain.add(lblmtKhuPhi);
 	}
+
 }

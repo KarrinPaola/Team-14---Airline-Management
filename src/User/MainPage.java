@@ -40,18 +40,11 @@ public class MainPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		PanelSignUp panelSignUp = new PanelSignUp(); 
-		panelSignUp.setVisible(true);
-		panelSignUp.setBounds(0, 0, 900, 600);;
-		contentPane.add(panelSignUp); 
 		
 		ListButton listButton = new ListButton(); 
-		listButton.setBorder(new LineBorder(new Color(0, 0, 0)));
-		listButton.setVisible(false);
 		contentPane.add(listButton); 
 		listButton.setBounds(0, 0, 200, 600);
-		
-		
+		listButton.setVisible(true);
 	}
 
 }
