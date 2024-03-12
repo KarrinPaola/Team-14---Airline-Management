@@ -83,6 +83,7 @@ public class ListFlight extends JPanel {
 		buttonFlightCancellation.setFont(new Font("Arial", Font.BOLD, 20));
 		buttonFlightCancellation.setBounds(509, 545, 145, 36);
 		add(buttonFlightCancellation);
+		
 		table.getColumnModel().getColumn(0).setPreferredWidth(29);
 		table.getColumnModel().getColumn(1).setPreferredWidth(110);
 		table.getColumnModel().getColumn(2).setPreferredWidth(110);

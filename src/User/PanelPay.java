@@ -33,20 +33,10 @@ public class PanelPay extends JPanel {
 		labelStart.setBounds(30, 60, 45, 33);
 		add(labelStart);
 		
-		textFieldStart = new JTextField();
-		textFieldStart.setBounds(70, 60, 210, 33);
-		add(textFieldStart);
-		textFieldStart.setColumns(10);
-		
 		JLabel labelEnd = new JLabel("Đến");
 		labelEnd.setFont(new Font("Arial", Font.BOLD, 20));
 		labelEnd.setBounds(310, 60, 51, 33);
 		add(labelEnd);
-		
-		textFieldEnd = new JTextField();
-		textFieldEnd.setColumns(10);
-		textFieldEnd.setBounds(360, 60, 210, 33);
-		add(textFieldEnd);
 		
 		JLabel panelTimeStart = new JLabel("Xuất phát");
 		panelTimeStart.setFont(new Font("Arial", Font.BOLD, 20));
@@ -68,10 +58,15 @@ public class PanelPay extends JPanel {
 		labelPrice.setBounds(295, 360, 51, 40);
 		add(labelPrice);
 		
-		JButton buttonPay = new JButton("Thanh toán");
-		buttonPay.setFont(new Font("Arial", Font.BOLD, 20));
-		buttonPay.setBounds(29, 441, 152, 35);
-		add(buttonPay);
+		textFieldEnd = new JTextField();
+		textFieldEnd.setColumns(10);
+		textFieldEnd.setBounds(360, 60, 210, 33);
+		add(textFieldEnd);
+		
+		textFieldStart = new JTextField();
+		textFieldStart.setBounds(70, 60, 210, 33);
+		add(textFieldStart);
+		textFieldStart.setColumns(10);
 		
 		textFieldTimeStart = new JTextField();
 		textFieldTimeStart.setColumns(10);
@@ -92,6 +87,11 @@ public class PanelPay extends JPanel {
 		textFieldPrice.setColumns(10);
 		textFieldPrice.setBounds(344, 360, 167, 33);
 		add(textFieldPrice);
+		
+		JButton buttonPay = new JButton("Thanh toán");
+		buttonPay.setFont(new Font("Arial", Font.BOLD, 20));
+		buttonPay.setBounds(29, 441, 152, 35);
+		add(buttonPay);
 
 	}
 }

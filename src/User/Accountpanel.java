@@ -64,10 +64,6 @@ public class Accountpanel extends JPanel {
 		panelMain.add(button_ChangePassword);
 		
 		JButton button_SignOut = new JButton("Đăng xuất");
-		button_SignOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		button_SignOut.setFont(new Font("Arial", Font.BOLD, 20));
 		button_SignOut.setBounds(524, 554, 170, 40);
 		add(button_SignOut);

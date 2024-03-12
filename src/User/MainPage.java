@@ -15,12 +15,17 @@ import java.awt.event.ActionEvent;
 public class MainPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	static ListFlightPanel listFlightPanel = new ListFlightPanel(); 
+	static fillInformationPanel fillInformationPanel = new fillInformationPanel(); 
+	static ListFlight listFlight = new ListFlight(); 
+	static PanelPay panelPay = new PanelPay(); 
+	static Accountpanel accountpanel = new Accountpanel(); 
+	
 	private JPanel contentPane;
 	private String username = ""; 
 	private String typeAccount = ""; 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,46 +51,45 @@ public class MainPage extends JFrame {
 		contentPane.setLayout(null);
 		
 		//Nhập các Panel cần dùng vào đây 
-		ListFlightPanel listFlightPanel = new ListFlightPanel(); 
+		
+		//Panel chọn chuyến bay
 		listFlightPanel.setBounds(200, 0, 700, 600);
 		listFlightPanel.setVisible(false);
 		contentPane.add(listFlightPanel); 
-		JButton buttonSelectFlight = new JButton("Chọn chuyến");
-		buttonSelectFlight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		buttonSelectFlight.setFont(new Font("Arial", Font.BOLD, 15));
-		buttonSelectFlight.setBounds(529, 549, 131, 40);
-		listFlightPanel.add(buttonSelectFlight);
 		
-		fillInformationPanel fillInformationPanel = new fillInformationPanel(); 
+		//Panel điều các thông tin cần thiết
 		fillInformationPanel.setBounds(200, 0, 700, 600);
 		fillInformationPanel.setVisible(false);
 		contentPane.add(fillInformationPanel); 
 		
-		PanelPay panelPay = new PanelPay(); 
+		
+		//Panel thanh toán tiền  
 		panelPay.setBounds(200, 0, 700, 600);
 		panelPay.setVisible(false);
 		contentPane.add(panelPay); 
+
 		
-		ListFlight listFlight = new ListFlight(); 
+		//Xem danh sách các chuyến bay của mình
 		listFlight.setBounds(200,0,700,600);
 		listFlight.setVisible(false);
 		contentPane.add(listFlight); 
+
 		
-		Accountpanel accountpanel = new Accountpanel(); 
+		//Panel đổi mật khẩu 
 		accountpanel.setBounds(200, 0, 700, 600);
 		accountpanel.setVisible(false);
 		contentPane.add(accountpanel); 
+
+		
+		
+		
 		
 		//Chuyển các panel 
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBounds(0, 0, 200, 600);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel PanelListButton = new JPanel();
+		PanelListButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		PanelListButton.setBounds(0, 0, 200, 600);
+		contentPane.add(PanelListButton);
+		PanelListButton.setLayout(null);
 		
 		JButton buttonBookFlight = new JButton("Đặt chuyến");
 		buttonBookFlight.addActionListener(new ActionListener() {
@@ -99,7 +103,7 @@ public class MainPage extends JFrame {
 		});
 		buttonBookFlight.setFont(new Font("Arial", Font.BOLD, 22));
 		buttonBookFlight.setBounds(10, 61, 180, 80);
-		panel.add(buttonBookFlight);
+		PanelListButton.add(buttonBookFlight);
 		
 		JButton buttonListFlight = new JButton("Xem chuyến");
 		buttonListFlight.addActionListener(new ActionListener() {
@@ -113,7 +117,7 @@ public class MainPage extends JFrame {
 		});
 		buttonListFlight.setFont(new Font("Arial", Font.BOLD, 22));
 		buttonListFlight.setBounds(10, 261, 180, 80);
-		panel.add(buttonListFlight);
+		PanelListButton.add(buttonListFlight);
 		
 		JButton buttonAccount = new JButton("Tài khoản");
 		buttonAccount.addActionListener(new ActionListener() {
@@ -127,7 +131,7 @@ public class MainPage extends JFrame {
 		});
 		buttonAccount.setFont(new Font("Arial", Font.BOLD, 22));
 		buttonAccount.setBounds(10, 461, 180, 80);
-		panel.add(buttonAccount);
+		PanelListButton.add(buttonAccount);
 		
 		
 		
