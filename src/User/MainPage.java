@@ -123,8 +123,8 @@ public class MainPage extends JFrame {
 		buttonAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listFlightPanel.setVisible(false);
-				listFlight.setVisible(true);
-				accountpanel.setVisible(false);
+				listFlight.setVisible(false);
+				accountpanel.setVisible(true);
 				fillInformationPanel.setVisible(false);
 				panelPay.setVisible(false);
 			}

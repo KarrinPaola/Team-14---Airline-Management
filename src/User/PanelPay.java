@@ -15,6 +15,8 @@ public class PanelPay extends JPanel {
 	private JTextField textFieldSeatClass;
 	private JTextField textFieldTypeTicket;
 	private JTextField textFieldPrice;
+	private Flight flight; 
+	private Passenger passenger; 
 
 	/**
 	 * Create the panel.
@@ -93,5 +95,21 @@ public class PanelPay extends JPanel {
 		buttonPay.setBounds(29, 441, 152, 35);
 		add(buttonPay);
 
+	}
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public Passenger getPassenger() {
+		return passenger;
+	}
+
+	public void setPassenger(Passenger passenger) {
+		this.passenger = passenger;
 	}
 }
