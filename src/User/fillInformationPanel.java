@@ -4,14 +4,21 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class fillInformationPanel extends JPanel {
 
@@ -20,6 +27,7 @@ public class fillInformationPanel extends JPanel {
 	private JTextField textFieldPhoneNumber;
 	private JTextField textFieldEmail;
 	private JTextField textFieldCMND;
+	private Passenger passenger; 
 
 	/**
 	 * Create the panel.
@@ -84,9 +92,8 @@ public class fillInformationPanel extends JPanel {
 		JComboBox<String> comboBoxMonth = new JComboBox<String>();
 		comboBoxMonth.setBounds(155, 124, 60, 29);
 		panel.add(comboBoxMonth);
-		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-		for (String month : months) {
-		    comboBoxMonth.addItem(month);
+		for (int i = 1; i <= 12; i++) {
+		    comboBoxMonth.addItem(String.valueOf(i));
 		}
 
 		JComboBox<String> comboBoxYear = new JComboBox<String>();
@@ -98,7 +105,6 @@ public class fillInformationPanel extends JPanel {
 		    comboBoxYear.addItem(String.valueOf(i));
 		}
 
-		
 		textFieldPhoneNumber = new JTextField();
 		textFieldPhoneNumber.setColumns(10);
 		textFieldPhoneNumber.setBounds(10, 225, 330, 40);
@@ -193,9 +199,87 @@ public class fillInformationPanel extends JPanel {
 
 		
 		JButton buttonConfirm = new JButton("Xác nhận");
+		buttonConfirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textFieldName.getText().isEmpty() || textFieldPhoneNumber.getText().isEmpty() ||
+	                    textFieldEmail.getText().isEmpty() || textFieldCMND.getText().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+	                    return;
+	                }
+				
+				String fullName = textFieldName.getText(); 
+				
+				//Lấy ra ngày sinh của người dùng
+				Date birthDate; 
+				try {
+					birthDate = convertToDate(
+							comboBoxDay.getSelectedItem().toString(),
+							comboBoxMonth.getSelectedItem().toString(), 
+							comboBoxYear.getSelectedItem().toString()
+					);
+				} catch (ParseException e1) {
+					JOptionPane.showMessageDialog(null, "Vui lòng chọn ngày tháng năm sinh hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } 
+				// Kiểm tra số điện thoại
+				String phoneNumber = textFieldPhoneNumber.getText();
+				if (!phoneNumber.matches("\\d{10}")) {
+				    JOptionPane.showMessageDialog(null, "Số điện thoại phải gồm 10 số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+				    return;
+				}
+				// Kiểm tra email
+				String email = textFieldEmail.getText();
+				if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com")) {
+				    JOptionPane.showMessageDialog(null, "Email phải có định dạng ...@gmail.com!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+				    return;
+				}
+				// Kiểm tra CMND
+				String cmnd = textFieldCMND.getText();
+				if (!cmnd.matches("\\d{12}")) {
+				    JOptionPane.showMessageDialog(null, "CMND phải gồm 12 số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+				    return;
+				}
+				//Lấy giá trị của hạng ghế
+				String classSeat = null; 
+				if(checkBoxNormal.isSelected() || checkBoxMerchant.isSelected()) {
+					if (checkBoxMerchant.isSelected()) {
+						classSeat = checkBoxMerchant.getText(); 
+					} else {
+						classSeat = checkBoxNormal.getText(); 
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Bạn chưa chọn hạng ghế!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+					return; 
+				}
+				//Lấy giá trị của loại vé 
+				String typeTicket; 
+				if (checkBoxOneWay.isSelected() || checkBoxRoundTrip.isSelected()) {
+					if(checkBoxOneWay.isSelected()) {
+						typeTicket = checkBoxOneWay.getText(); 
+					}else {
+						typeTicket = checkBoxRoundTrip.getText(); 
+					}
+				}else {
+                    JOptionPane.showMessageDialog(null, "Vui lòng chọn loại vé!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+				passenger = new Passenger(classSeat, typeTicket, fullName, birthDate, phoneNumber, email, cmnd); 
+				MainPage.panelPay.setPassenger(passenger);
+				setVisible(false);
+				MainPage.panelPay.setVisible(true);
+				MainPage.panelPay.setTextField();
+			}
+		});
 		buttonConfirm.setFont(new Font("Arial", Font.BOLD, 20));
 		buttonConfirm.setBounds(100, 250, 150, 41);
 		panel_1.add(buttonConfirm);
 
 	}
+	
+	public static Date convertToDate(String year, String month, String day) throws ParseException {
+        String dateString = year + "-" + month + "-" + day;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = dateFormat.parse(dateString);
+        return date;
+    }
 }

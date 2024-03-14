@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.ObjectInputFilter.Status;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -20,6 +21,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -40,6 +43,7 @@ public class ListFlightPanel extends JPanel {
 	private int price; 
 	private DefaultTableModel tableModel;
 	private Flight flight; 
+	private boolean acceptable = false;  
 
 	/**
 	 * Create the panel.
@@ -159,16 +163,21 @@ public class ListFlightPanel extends JPanel {
 					status = tableListFlight.getValueAt(selectedRow, 5).toString();
 					price = (int) tableListFlight.getValueAt(selectedRow, 6);
 					flight = new Flight(idFlight, startPoint, endPoint, dateStart, NumberOfSeat, status, price); 
-				}
+					acceptable = true; 
+				} 
 			}
 		});
 		
 		JButton buttonSelectFlight = new JButton("Chọn chuyến");
 		buttonSelectFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				MainPage.panelPay.setFlight(flight);
-				MainPage.fillInformationPanel.setVisible(true); 
+				if(acceptable) {
+					setVisible(false); 
+					MainPage.fillInformationPanel.setVisible(true); 
+					MainPage.panelPay.setFlight(flight); 
+				}else {
+					JOptionPane.showMessageDialog(null, "Bạn chưa chọn chuyến muốn đi", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		buttonSelectFlight.setFont(new Font("Arial", Font.BOLD, 15));

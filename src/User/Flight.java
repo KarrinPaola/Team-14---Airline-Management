@@ -6,10 +6,10 @@ public class Flight {
 	private String ID = ""; 
 	private String startPoint = ""; 
 	private String endPoint = ""; 
-	private Date dateStart; 
-	private int numberOfSeat; 
+	private Date dateStart = null; 
+	private int numberOfSeat = 0; 
 	private String status = ""; 
-	private int price ;
+	private int price = 0;
 	
 	public Flight() {
 		// TODO Auto-generated constructor stub
