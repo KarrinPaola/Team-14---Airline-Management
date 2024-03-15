@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class MainPage extends JFrame {
 
@@ -21,9 +24,10 @@ public class MainPage extends JFrame {
 	static ListFlight listFlight = new ListFlight(); 
 	static PanelPay panelPay = new PanelPay(); 
 	static Accountpanel accountpanel = new Accountpanel(); 
+	static JPanel emptyJPanel = new JPanel();  
 	
 	private JPanel contentPane;
-	private String username = ""; 
+	private static String username = ""; 
 	private String typeAccount = ""; 
 	
 	public static void main(String[] args) {
@@ -55,6 +59,18 @@ public class MainPage extends JFrame {
 		//Panel chọn chuyến bay
 		listFlightPanel.setBounds(200, 0, 700, 600);
 		listFlightPanel.setVisible(false);
+		
+				//Panel ko có gì 
+				emptyJPanel.setBounds(200, 0, 700, 600);
+				emptyJPanel.setVisible(true);
+				contentPane.add(emptyJPanel); 
+				emptyJPanel.setLayout(null);
+				
+				JLabel lblNewLabel_1 = new JLabel("Chào mừng quý khách ");
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 39));
+				lblNewLabel_1.setBounds(101, 187, 500, 242);
+				emptyJPanel.add(lblNewLabel_1);
 		contentPane.add(listFlightPanel); 
 		
 		//Panel điều các thông tin cần thiết
@@ -79,8 +95,6 @@ public class MainPage extends JFrame {
 		accountpanel.setBounds(200, 0, 700, 600);
 		accountpanel.setVisible(false);
 		contentPane.add(accountpanel); 
-
-		
 		
 		
 		
@@ -99,6 +113,7 @@ public class MainPage extends JFrame {
 				accountpanel.setVisible(false);
 				fillInformationPanel.setVisible(false);
 				panelPay.setVisible(false);
+				emptyJPanel.setVisible(false);
 			}
 		});
 		buttonBookFlight.setFont(new Font("Arial", Font.BOLD, 22));
@@ -108,6 +123,7 @@ public class MainPage extends JFrame {
 		JButton buttonListFlight = new JButton("Xem chuyến");
 		buttonListFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emptyJPanel.setVisible(false);
 				listFlightPanel.setVisible(false);
 				listFlight.setVisible(true);
 				accountpanel.setVisible(false);
@@ -127,22 +143,27 @@ public class MainPage extends JFrame {
 				accountpanel.setVisible(true);
 				fillInformationPanel.setVisible(false);
 				panelPay.setVisible(false);
+				emptyJPanel.setVisible(false);
 			}
 		});
 		buttonAccount.setFont(new Font("Arial", Font.BOLD, 22));
 		buttonAccount.setBounds(10, 461, 180, 80);
 		PanelListButton.add(buttonAccount);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(86, 494, 61, 16);
+		PanelListButton.add(lblNewLabel);
+		
 		
 		
 	}
 
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		MainPage.username = username;
 	}
 
 	public String getTypeAccount() {
@@ -152,5 +173,4 @@ public class MainPage extends JFrame {
 	public void setTypeAccount(String typeAccount) {
 		this.typeAccount = typeAccount;
 	}
-
 }

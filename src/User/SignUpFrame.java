@@ -159,10 +159,23 @@ public class SignUpFrame extends JFrame {
 				                statement.execute(); 
 
 				                // Tạo bảng mới cho tài khoản
-				                String createTableQuery = "CREATE TABLE IF NOT EXISTS " + username + "_Info (ID INT AUTO_INCREMENT PRIMARY KEY, TypeTicket VARCHAR(255), ClassSeat VARCHAR(255))";
+				                String createTableQuery = "CREATE TABLE IF NOT EXISTS " + username + "(ID VARCHAR(50), TypeTicket VARCHAR(255), ClassSeat VARCHAR(255))";
 				                statement2 = connection.createStatement();
 				                statement2.execute(createTableQuery);
 				                
+				                JOptionPane.showMessageDialog(null, "Bạn đã đăng ký thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+						        
+						        // Hiển thị hộp thoại hỏi có quay về màn hình đăng nhập không
+						        int option = JOptionPane.showConfirmDialog(null, "Bạn muốn quay về màn hình đăng nhập không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+						        
+						        // Nếu người dùng chọn Yes (có)
+						        if (option == JOptionPane.YES_OPTION) {
+						            dispose(); 
+						            LoginPage loginPage = new LoginPage(); 
+						            loginPage.setVisible(true); 
+						        } else {
+						            
+						        }
 				                
 				            }
 				        } catch (SQLException e1) {
@@ -177,6 +190,7 @@ public class SignUpFrame extends JFrame {
 				                e1.printStackTrace();
 				            } 
 				        }
+				        
 			        }else {
 			        	Connection connection = null; 
 				        PreparedStatement statement = null; 

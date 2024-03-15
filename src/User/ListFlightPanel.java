@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -209,17 +210,28 @@ public class ListFlightPanel extends JPanel {
             statement.setString(2, endPoint);
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Flight flight = new Flight(
-                        resultSet.getString("ID"),
-                        resultSet.getString("StartPoint"),
-                        resultSet.getString("EndPoint"),
-                        resultSet.getDate("DateStart"),
-                        resultSet.getInt("NumberOfSeat"),
-                        resultSet.getString("Status"),
-                        resultSet.getInt("Price")
-                );
-                flights.add(flight);
+            try {
+                while (resultSet.next()) {
+                    LocalDate currentDate = LocalDate.now();
+                    LocalDate flightDate = resultSet.getDate("DateStart").toLocalDate();
+
+                    // Kiểm tra số ghế trống và ngày khởi hành
+                    if (resultSet.getInt("NumberOfSeat") > 0 && flightDate.isAfter(currentDate)) {
+                        Flight flight = new Flight(
+                                resultSet.getString("ID"),
+                                resultSet.getString("StartPoint"),
+                                resultSet.getString("EndPoint"),
+                                resultSet.getDate("DateStart"),
+                                resultSet.getInt("NumberOfSeat"),
+                                resultSet.getString("Status"),
+                                resultSet.getInt("Price")
+                        );
+                        flights.add(flight);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Xử lý exception nếu cần
             }
         } catch (SQLException e) {
             e.printStackTrace();

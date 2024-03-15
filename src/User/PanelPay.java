@@ -2,10 +2,16 @@ package User;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class PanelPay extends JPanel {
@@ -96,6 +102,63 @@ public class PanelPay extends JPanel {
 		JButton buttonPay = new JButton("Thanh toán");
 		buttonPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Cái này để làm gì để đẩy code lên trên hệ thống này 
+				//Đầu tiên cứ đẩy code lên cho mục người dùng đi đã 
+				//lấy mã chuyến từ Flight và hạng ghế với loại vé từ người dùng 
+				Connection connection = null; 
+				PreparedStatement statement = null; 
+				
+				
+				try {
+					connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/User", "root", "");
+					String updateData = "INSERT INTO " + MainPage.getUsername()+ "(ID, TypeTicket, ClassSeat) VALUES (?, ?, ?)";   
+					statement = connection.prepareStatement(updateData); 
+					statement.setString(1, flight.getID()); 
+					statement.setString(2, passenger.getTypeTicket()); 
+					statement.setString(3, passenger.getClassSeat()); 
+					statement.execute(); 
+					
+					JOptionPane.showMessageDialog(null, "Bạn đã đăng ký thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			        
+			        // Hiển thị hộp thoại hỏi có quay về màn hình đăng nhập không
+					int option = JOptionPane.showOptionDialog(null,
+			                "Đặt chuyến thành công!",
+			                "Xác nhận",
+			                JOptionPane.YES_NO_OPTION,
+			                JOptionPane.INFORMATION_MESSAGE,
+			                null,
+			                new String[]{"Đặt chuyến tiếp", "Quay về màn hình chính"},
+			                "Đặt chuyến tiếp"); // Lựa chọn mặc định
+
+			        // Xử lý lựa chọn của người dùng
+			        if (option == JOptionPane.YES_OPTION) {
+			            // Xử lý khi người dùng chọn "Đặt chuyến tiếp"
+			        	setVisible(false); 
+			        	flight = null; 
+			        	passenger = null; 
+			        	MainPage.listFlightPanel.setVisible(true); 
+			        	
+			        } else if (option == JOptionPane.NO_OPTION) {
+			            // Xử lý khi người dùng chọn "Quay về màn hình chính"
+			        	setVisible(false); 
+			        	flight = null; 
+			        	passenger = null;
+			        	MainPage.emptyJPanel.setVisible(true); 
+			        }
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					if(connection != null) {
+						try {
+							connection.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} 
+					}
+				}
+				
 				
 			}
 		});
