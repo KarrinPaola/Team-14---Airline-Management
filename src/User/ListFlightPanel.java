@@ -243,6 +243,14 @@ public class ListFlightPanel extends JPanel {
                     e.printStackTrace();
                 }
             }
+            if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
         }
 
         // Clear old data in table

@@ -111,11 +111,15 @@ public class PanelPay extends JPanel {
 				
 				try {
 					connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/User", "root", "");
-					String updateData = "INSERT INTO " + MainPage.getUsername()+ "(ID, TypeTicket, ClassSeat) VALUES (?, ?, ?)";   
+					String updateData = "INSERT INTO " + MainPage.getUsername()+ "(ID, StartPoint, EndPoint, DateStart, ClassSeat, TypeTicket, Status) VALUES (?, ?, ?, ?, ?, ?, ?)";   
 					statement = connection.prepareStatement(updateData); 
 					statement.setString(1, flight.getID()); 
-					statement.setString(2, passenger.getTypeTicket()); 
-					statement.setString(3, passenger.getClassSeat()); 
+					statement.setString(2, flight.getStartPoint()); 
+					statement.setString(3, flight.getEndPoint()); 
+					statement.setDate(4, flight.getDateStart()); 
+					statement.setString(5, passenger.getClassSeat()); 
+					statement.setString(6, passenger.getTypeTicket()); 
+					statement.setString(7, flight.getStatus()); 
 					statement.execute(); 
 					
 					JOptionPane.showMessageDialog(null, "Bạn đã đăng ký thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -152,6 +156,14 @@ public class PanelPay extends JPanel {
 					if(connection != null) {
 						try {
 							connection.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} 
+					}
+					if (statement != null) {
+						try {
+							statement.close();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

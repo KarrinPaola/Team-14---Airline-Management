@@ -129,6 +129,8 @@ public class MainPage extends JFrame {
 				accountpanel.setVisible(false);
 				fillInformationPanel.setVisible(false);
 				panelPay.setVisible(false);
+				
+				listFlight.showAllFlight();
 			}
 		});
 		buttonListFlight.setFont(new Font("Arial", Font.BOLD, 22));

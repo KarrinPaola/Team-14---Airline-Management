@@ -6,8 +6,10 @@ import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -81,10 +83,48 @@ public class ListFlight extends JPanel {
 		
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/User", "root", "");
+			String sql = "SELECT * FROM " + MainPage.getUsername(); 
+			statement = connection.prepareStatement(sql); 
+			ResultSet resultSet = statement.executeQuery(); 
+			
+			while (resultSet.next()) {
+				FlightxPassenger flightxPassenger = new FlightxPassenger(
+						resultSet.getString("ID"),
+                        resultSet.getString("StartPoint"),
+                        resultSet.getString("EndPoint"),
+                        resultSet.getDate("DateStart"),
+                        resultSet.getString("ClassSeat"),
+                        resultSet.getString("TypeTicket"),
+                        resultSet.getString("Status")
+						); 
+				flightxPassengers.add(flightxPassenger); 
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+		}
+		tableModel.setRowCount(0); 
+		
+		for(FlightxPassenger flightxPassenger : flightxPassengers) {
+			tableModel.addRow(new Object[] {
+					flightxPassenger.getID(), 
+					flightxPassenger.getStartPoint(), 
+					flightxPassenger.getEndPoint(), 
+					flightxPassenger.getDateStart(), 
+					flightxPassenger.getClassSeat(), 
+					flightxPassenger.getTypeTicket(), 
+					flightxPassenger.getStatus()
+			}); 
 		}
 	}
 }
