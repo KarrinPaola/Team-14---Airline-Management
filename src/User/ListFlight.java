@@ -16,7 +16,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListFlight extends JPanel {
 
@@ -63,9 +67,29 @@ public class ListFlight extends JPanel {
         flightCancelled = textFieldFlightCancellation.getText(); 
         
         JButton buttonFlightCancellation = new JButton("Hủy chuyến");
+        buttonFlightCancellation.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		cancelFlight();
+        		showAllFlight();
+        		textFieldFlightCancellation.setText("");
+        	}
+        });
         buttonFlightCancellation.setFont(new Font("Arial", Font.BOLD, 20));
         buttonFlightCancellation.setBounds(509, 545, 145, 36);
         add(buttonFlightCancellation);
+        
+        tableListFlight.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				int selectedRow = tableListFlight.getSelectedRow(); 
+				if (selectedRow != -1 ) {
+					String idFlight = tableListFlight.getValueAt(selectedRow, 0).toString(); 
+					textFieldFlightCancellation.setText(idFlight); 
+				}
+				
+			}
+		});
     }
 
     public String getFlightCancelled() {
@@ -75,6 +99,43 @@ public class ListFlight extends JPanel {
     public void setFlightCancelled(String flightCancelled) {
         this.flightCancelled = flightCancelled;
     }
+    
+    public void cancelFlight() {
+    	String iDFlight = textFieldFlightCancellation.getText(); 
+		Connection connection = null; 
+		PreparedStatement statement = null; 
+		
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/User", "root", "");
+			 String sql = "DELETE FROM " + MainPage.getUsername() + " WHERE ID = ?"; 
+		        statement = connection.prepareStatement(sql); 
+		        statement.setString(1, iDFlight);
+		        statement.executeUpdate(); 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+		}
+	}
     
     public void showAllFlight() {
 		Connection connection = null; 

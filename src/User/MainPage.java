@@ -6,12 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -55,6 +55,20 @@ public class MainPage extends JFrame {
 		contentPane.setLayout(null);
 		
 		//Nhập các Panel cần dùng vào đây 
+		//Làm một cái nút đăng xuất 
+		JButton button_SignOut = new JButton("Đăng xuất");
+		button_SignOut.setFont(new Font("Arial", Font.BOLD, 20));
+		button_SignOut.setBounds(724, 554, 170, 40);
+		contentPane.add(button_SignOut);
+		button_SignOut.setVisible(false);
+		button_SignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainPage.setUsername(""); 
+				LoginPage loginPage = new LoginPage(); 
+				loginPage.setVisible(true);
+				dispose();
+			}
+		});
 		
 		//Panel chọn chuyến bay
 		listFlightPanel.setBounds(200, 0, 700, 600);
@@ -146,6 +160,7 @@ public class MainPage extends JFrame {
 				fillInformationPanel.setVisible(false);
 				panelPay.setVisible(false);
 				emptyJPanel.setVisible(false);
+				button_SignOut.setVisible(true);
 			}
 		});
 		buttonAccount.setFont(new Font("Arial", Font.BOLD, 22));
@@ -157,14 +172,13 @@ public class MainPage extends JFrame {
 		PanelListButton.add(lblNewLabel);
 		
 		
-		
 	}
 
 	public static String getUsername() {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public static void setUsername(String username) {
 		MainPage.username = username;
 	}
 
@@ -175,4 +189,5 @@ public class MainPage extends JFrame {
 	public void setTypeAccount(String typeAccount) {
 		this.typeAccount = typeAccount;
 	}
+	
 }
