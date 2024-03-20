@@ -36,7 +36,7 @@ public class PanelListFlight extends JPanel {
     /**
      * Create the panel.
      */
-    public PanelListFlight {
+    public PanelListFlight () {
         this.setBounds(0, 0, 700, 600);
         setLayout(null);
         
