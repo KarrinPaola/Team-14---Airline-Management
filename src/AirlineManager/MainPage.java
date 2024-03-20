@@ -44,7 +44,7 @@ public class MainPage extends JFrame {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public static void setUsername(String username) {
 		MainPage.username = username;
 	}
 

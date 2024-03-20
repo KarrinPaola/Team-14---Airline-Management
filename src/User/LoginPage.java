@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import AirlineManager.MainPage;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -127,7 +130,41 @@ public class LoginPage extends JFrame {
 								MainPage mainPage = new MainPage(); 
 								mainPage.setVisible(true); 
 								MainPage.setUsername(username); 
-								mainPage.setTypeAccount(typeAccount); 
+								dispose(); 
+							}else {
+								System.out.println("Dấm dớ");
+								JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+							}
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} finally {
+							try {
+				                if(connection != null) connection.close();
+				                if(statement != null) statement.close();
+				            } catch (SQLException e1) {
+				                e1.printStackTrace();
+				            } 
+						}
+					}
+					if (typeAccount.equals("Nhà quản lý")) {
+						Connection connection = null; 
+						PreparedStatement statement = null; 
+						
+						try {
+							connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Manager", "root", "");
+							
+							String checkExit = "SELECT * FROM Manager_Password WHERE ManagerName = ? AND Password = ?"; 
+							statement = connection.prepareStatement(checkExit); 
+							statement.setString(1, username); 
+							statement.setString(2, password); 
+							ResultSet resultSet = statement.executeQuery(); 
+							
+							if(resultSet.next()) {
+								AirlineManager.MainPage mainPage = new MainPage(); 
+								mainPage.setVisible(true); 
+								mainPage.setUsername(username); 
 								dispose(); 
 							}else {
 								System.out.println("Dấm dớ");
