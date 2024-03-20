@@ -126,11 +126,12 @@ public class LoginPage extends JFrame {
 							if(resultSet.next()) {
 								MainPage mainPage = new MainPage(); 
 								mainPage.setVisible(true); 
-								mainPage.setUsername(username); 
+								MainPage.setUsername(username); 
 								mainPage.setTypeAccount(typeAccount); 
 								dispose(); 
 							}else {
 								System.out.println("Dấm dớ");
+								JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 							}
 							
 						} catch (SQLException e1) {

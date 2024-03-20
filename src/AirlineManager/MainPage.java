@@ -10,6 +10,7 @@ public class MainPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private static String username; 
 
 	/**
 	 * Launch the application.
@@ -32,11 +33,19 @@ public class MainPage extends JFrame {
 	 */
 	public MainPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 900, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+	}
+
+	public static String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		MainPage.username = username;
 	}
 
 }
