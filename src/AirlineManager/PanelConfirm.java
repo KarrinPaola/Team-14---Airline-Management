@@ -32,6 +32,7 @@ public class PanelConfirm extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelConfirm() {
+		this.setBounds(0, 0, 700, 600);
 		setLayout(null);
 		
 		JPanel panelMain = new JPanel();
