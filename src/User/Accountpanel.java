@@ -70,13 +70,14 @@ public class Accountpanel extends JPanel {
 		JButton button_ChangePassword = new JButton("Đổi mật khẩu");
 		button_ChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String oldPassword = passwordField_OldPassword.getPassword().toString(); 
-				String newPassword = passwordField_NewPassword.getPassword().toString(); 
-				String reInputPassword = passwordField_ReInputNewPassword.getPassword().toString(); 
+				String oldPassword = String.valueOf(passwordField_OldPassword.getPassword());
+				String newPassword = String.valueOf(passwordField_NewPassword.getPassword());
+				String reInputPassword = String.valueOf(passwordField_ReInputNewPassword.getPassword()); 
 				int error = checkPassWord(oldPassword, newPassword, reInputPassword); 
 				
 				if (error == 0) {
 					updatePassword(newPassword); 
+					JOptionPane.showMessageDialog(null, "Bạn đã đổi mật khẩu thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 					return; 
 				} else if (error == 1) {
 					JOptionPane.showMessageDialog(null, "Sai sai mật khẩu cũ!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -145,7 +146,7 @@ public class Accountpanel extends JPanel {
 			
 			error = 2; 
 		}
-		if (newPassword.equals(reInputPassword) != true) {
+		if (!(newPassword == reInputPassword)) {
 			
 			error = 2; 
 		}
