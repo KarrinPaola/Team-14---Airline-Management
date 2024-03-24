@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.mysql.cj.callback.UsernameCallback;
+
 import AirlineManager.MainPage;
 
 import java.awt.Color;
@@ -127,9 +129,9 @@ public class LoginPage extends JFrame {
 							ResultSet resultSet = statement.executeQuery(); 
 							
 							if(resultSet.next()) {
-								MainPage mainPage = new MainPage(); 
+								User.MainPage mainPage = new User.MainPage(); 
 								mainPage.setVisible(true); 
-								MainPage.setUsername(username); 
+								User.MainPage.setUsername(username); 
 								dispose(); 
 							}else {
 								System.out.println("Dấm dớ");
@@ -164,7 +166,7 @@ public class LoginPage extends JFrame {
 							if(resultSet.next()) {
 								AirlineManager.MainPage mainPage = new MainPage(); 
 								mainPage.setVisible(true); 
-								mainPage.setUsername(username); 
+								AirlineManager.MainPage.setUsername(username); 
 								dispose(); 
 							}else {
 								System.out.println("Dấm dớ");

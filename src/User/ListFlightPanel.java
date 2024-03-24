@@ -53,13 +53,13 @@ public class ListFlightPanel extends JPanel {
 		this.setBounds(0, 0, 700, 600);
 		setLayout(null);
 		
-		String[] departureLocations = {"", "TP.Hà Nội", "TP.Hồ Chí Minh", "TP.Đà Nẵng", "TP.Hải Phòng", "TP.Cần Thơ", "TP.Quảng Ninh"};
+		String[] departureLocations = {"", "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
 		JComboBox<String> comboBox_StartingPoint = new JComboBox<>(departureLocations);
 		comboBox_StartingPoint.setBounds(50, 70, 150, 40);
 		
 		add(comboBox_StartingPoint);
 		
-		String[] destinationLocations = {"", "TP.Hà Nội", "TP.Hồ Chí Minh", "TP.Đà Nẵng", "TP.Hải Phòng", "TP.Cần Thơ", "TP.Quảng Ninh"};
+		String[] destinationLocations = {"", "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
 		JComboBox<String> comboBox_EndingPoint = new JComboBox<String>(destinationLocations);
 		comboBox_EndingPoint.setBounds(270, 70, 150, 40);
 		
@@ -72,33 +72,33 @@ public class ListFlightPanel extends JPanel {
 				startPoint = (String) comboBox_StartingPoint.getSelectedItem(); 
 				
 				switch (startPoint){
-					case "TP.Hà Nội": {
-	                    String[] destinationLocations = {"TP.Hồ Chí Minh", "TP.Đà Nẵng", "TP.Cần Thơ"};
+					case "Hà Nội": {
+	                    String[] destinationLocations = {"Hồ Chí Minh", "Đà Nẵng", "Cần Thơ"};
 	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
 	                    break;
 	                }
-	                case "TP.Hồ Chí Minh": {
-	                    String[] destinationLocations = {"TP.Hà Nội", "TP.Đà Nẵng", "TP.Hải Phòng", "TP.Quảng Ninh"};
+	                case "Hồ Chí Minh": {
+	                    String[] destinationLocations = {"Hà Nội", "Đà Nẵng", "Hải Phòng", "Quảng Ninh"};
 	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
 	                    break;
 	                }
-	                case "TP.Đà Nẵng": {
-	                    String[] destinationLocations = {"TP.Hà Nội", "TP.Hồ Chí Minh", "TP.Hải Phòng", "TP.Cần Thơ", "TP.Quảng Ninh"};
+	                case "Đà Nẵng": {
+	                    String[] destinationLocations = {"Hà Nội", "Hồ Chí Minh", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
 	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
 	                    break;
 	                }
-	                case "TP.Hải Phòng": {
-	                    String[] destinationLocations = {"TP.Hồ Chí Minh", "TP.Đà Nẵng", "TP.Cần Thơ"};
+	                case "Hải Phòng": {
+	                    String[] destinationLocations = {"Hồ Chí Minh", "Đà Nẵng", "Cần Thơ"};
 	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
 	                    break;
 	                }
-	                case "TP.Cần Thơ": {
-	                    String[] destinationLocations = {"TP.Hà Nội", "TP.Đà Nẵng", "TP.Hải Phòng", "TP.Quảng Ninh"};
+	                case "Cần Thơ": {
+	                    String[] destinationLocations = {"Hà Nội", "Đà Nẵng", "Hải Phòng", "Quảng Ninh"};
 	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
 	                    break;
 	                }
-	                case "TP.Quảng Ninh": {
-	                    String[] destinationLocations = {"TP.Hồ Chí Minh", "TP.Đà Nẵng", "TP.Cần Thơ"};
+	                case "Quảng Ninh": {
+	                    String[] destinationLocations = {"Hồ Chí Minh", "Đà Nẵng", "Cần Thơ"};
 	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
 	                    break;
 	                }

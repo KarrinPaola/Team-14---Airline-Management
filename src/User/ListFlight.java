@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -103,16 +102,21 @@ public class ListFlight extends JPanel {
     public void cancelFlight() {
     	String iDFlight = textFieldFlightCancellation.getText(); 
 		Connection connection = null; 
+		Connection connection2 = null; 
 		PreparedStatement statement = null; 
-		
+		PreparedStatement statement2 = null; 
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/User", "root", "");
-			 String sql = "DELETE FROM " + MainPage.getUsername() + " WHERE ID = ?"; 
-		        statement = connection.prepareStatement(sql); 
-		        statement.setString(1, iDFlight);
-		        statement.executeUpdate(); 
+			String sql = "DELETE FROM " + MainPage.getUsername() + " WHERE ID = ?"; 
+		    statement = connection.prepareStatement(sql); 
+		    statement.setString(1, iDFlight);
+		    statement.executeUpdate(); 
 			
-			
+		    connection2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/Manager", "root", "");
+		    String updateData3 = "UPDATE ListFlight SET NumberOfSeat = NumberOfSeat + 1 WHERE ID = ?";
+			statement2 = connection2.prepareStatement(updateData3); 
+			statement.setString(1, iDFlight);
+			statement.execute(); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -143,8 +147,10 @@ public class ListFlight extends JPanel {
 		List<FlightxPassenger> flightxPassengers = new ArrayList<>(); 
 		
 		try {
+			System.out.println(MainPage.getUsername());
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/User", "root", "");
 			String sql = "SELECT * FROM " + MainPage.getUsername(); 
+			
 			statement = connection.prepareStatement(sql); 
 			ResultSet resultSet = statement.executeQuery(); 
 			

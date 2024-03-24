@@ -9,9 +9,10 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -276,10 +277,11 @@ public class fillInformationPanel extends JPanel {
 
 	}
 	
-	public static Date convertToDate(String year, String month, String day) throws ParseException {
-        String dateString = year + "-" + month + "-" + day;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = dateFormat.parse(dateString);
-        return date;
-    }
+	public static java.sql.Date convertToDate(String year, String month, String day) throws ParseException {
+	    String dateString = year + "-" + month + "-" + day;
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    java.util.Date utilDate = dateFormat.parse(dateString);
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	    return sqlDate;
+	}
 }

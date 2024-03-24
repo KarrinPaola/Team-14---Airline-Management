@@ -1,6 +1,6 @@
 package User;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Passenger {
     private String classSeat; 
