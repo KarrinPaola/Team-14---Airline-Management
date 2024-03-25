@@ -10,3 +10,4 @@ Trong file User:
 + Với tk của nhà quản lí, các chuyến bay mới có thể được thêm vào.
 + Số lượng ghế ngồi, số lượng hành khách cũng được lưu trữ tại đây.
 
+Để có thể sử dụng code đầu tiên bạn phải cài đặt XAMPP để có thể tạo ra 1 sever để chạy code cũng như chứa cơ sở dữ liệu, tiếp theo khởi tạo các bảng trong local host và định nghĩa các giá trị đó để có thể sử dụng code. sau khi hoàn thành xong vào phần code và bạn sẽ phải bắt đầu chạy từ LoginPage.
