@@ -11,6 +11,7 @@ public class Passenger {
     private String email; 
     private String ID;
     
+    // Constructor
     public Passenger(String classSeat, String typeTicket, String fullName, Date birthDate, String phoneNumber, String email, String ID) {
         this.classSeat = classSeat;
         this.typeTicket = typeTicket;
@@ -21,6 +22,7 @@ public class Passenger {
         this.ID = ID;
     }
     
+    // Getter and setter methods
     public String getClassSeat() {
         return classSeat;
     }

@@ -31,102 +31,57 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+/**
+ * This panel allows users to search for available flights based on their departure and destination locations.
+ * Users can select a flight from the displayed list and proceed with their booking.
+ */
 public class ListFlightPanel extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-	private JTable tableListFlight;
-	private String startPoint = ""; 
-	private String endPoint = ""; 
-	private String idFlight = ""; 
-	private Date dateStart; 
-	private int NumberOfSeat; 
-	private String status; 
-	private int price; 
-	private DefaultTableModel tableModel;
-	private Flight flight; 
-	private boolean acceptable = false;  
+    private static final long serialVersionUID = 1L;
+    private JTable tableListFlight;
+    private String startPoint = "";
+    private String endPoint = "";
+    private String idFlight = "";
+    private Date dateStart;
+    private int NumberOfSeat;
+    private String status;
+    private int price;
+    private DefaultTableModel tableModel;
+    private Flight flight;
+    private boolean acceptable = false;
 
-	/**
-	 * Create the panel.
-	 */
-	public ListFlightPanel() {
-		this.setBounds(0, 0, 700, 600);
-		setLayout(null);
-		
-		String[] departureLocations = {"", "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
-		JComboBox<String> comboBox_StartingPoint = new JComboBox<>(departureLocations);
-		comboBox_StartingPoint.setBounds(50, 70, 150, 40);
-		
-		add(comboBox_StartingPoint);
-		
-		String[] destinationLocations = {"", "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
-		JComboBox<String> comboBox_EndingPoint = new JComboBox<String>(destinationLocations);
-		comboBox_EndingPoint.setBounds(270, 70, 150, 40);
-		
-		add(comboBox_EndingPoint);
-		
-		comboBox_StartingPoint.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				startPoint = (String) comboBox_StartingPoint.getSelectedItem(); 
-				
-				switch (startPoint){
-					case "Hà Nội": {
-	                    String[] destinationLocations = {"Hồ Chí Minh", "Đà Nẵng", "Cần Thơ"};
-	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
-	                    break;
-	                }
-	                case "Hồ Chí Minh": {
-	                    String[] destinationLocations = {"Hà Nội", "Đà Nẵng", "Hải Phòng", "Quảng Ninh"};
-	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
-	                    break;
-	                }
-	                case "Đà Nẵng": {
-	                    String[] destinationLocations = {"Hà Nội", "Hồ Chí Minh", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
-	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
-	                    break;
-	                }
-	                case "Hải Phòng": {
-	                    String[] destinationLocations = {"Hồ Chí Minh", "Đà Nẵng", "Cần Thơ"};
-	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
-	                    break;
-	                }
-	                case "Cần Thơ": {
-	                    String[] destinationLocations = {"Hà Nội", "Đà Nẵng", "Hải Phòng", "Quảng Ninh"};
-	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
-	                    break;
-	                }
-	                case "Quảng Ninh": {
-	                    String[] destinationLocations = {"Hồ Chí Minh", "Đà Nẵng", "Cần Thơ"};
-	                    comboBox_EndingPoint.setModel(new DefaultComboBoxModel<>(destinationLocations));
-	                    break;
-	                }
-	                default:
-	                    throw new IllegalArgumentException("Unexpected value: " + endPoint);
-				}
-			}
-		});
-		comboBox_EndingPoint.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				endPoint = (String) comboBox_EndingPoint.getSelectedItem(); 
-			}
-		});
-		
-		JLabel labelEndingPoint = new JLabel("Điểm đến");
-		labelEndingPoint.setFont(new Font("Arial", Font.BOLD, 22));
-		labelEndingPoint.setBounds(55, 35, 150, 35);
-		add(labelEndingPoint);
-		
-		JLabel labelStartingPoint = new JLabel("Điểm đi");
-		labelStartingPoint.setFont(new Font("Arial", Font.BOLD, 22));
-		labelStartingPoint.setBounds(275, 35, 150, 35);
-		add(labelStartingPoint);
-		
-		String[] columnNames = {"ID", "Điểm đi", "Điểm đến", "Ngày khởi hành", "Số ghế trống", "Trạng thái", "Giá vé"};
-		tableModel = new DefaultTableModel(columnNames, 0) {
+    /**
+     * Create the panel.
+     */
+    public ListFlightPanel() {
+        this.setBounds(0, 0, 700, 600);
+        setLayout(null);
+
+        // Combo boxes for selecting departure and destination locations
+        String[] departureLocations = {"", "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
+        JComboBox<String> comboBox_StartingPoint = new JComboBox<>(departureLocations);
+        comboBox_StartingPoint.setBounds(50, 70, 150, 40);
+        add(comboBox_StartingPoint);
+
+        String[] destinationLocations = {"", "Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Cần Thơ", "Quảng Ninh"};
+        JComboBox<String> comboBox_EndingPoint = new JComboBox<String>(destinationLocations);
+        comboBox_EndingPoint.setBounds(270, 70, 150, 40);
+        add(comboBox_EndingPoint);
+
+        // Labels for departure and destination points
+        JLabel labelEndingPoint = new JLabel("Điểm đến");
+        labelEndingPoint.setFont(new Font("Arial", Font.BOLD, 22));
+        labelEndingPoint.setBounds(55, 35, 150, 35);
+        add(labelEndingPoint);
+
+        JLabel labelStartingPoint = new JLabel("Điểm đi");
+        labelStartingPoint.setFont(new Font("Arial", Font.BOLD, 22));
+        labelStartingPoint.setBounds(275, 35, 150, 35);
+        add(labelStartingPoint);
+
+        // Table for displaying flight information
+        String[] columnNames = {"ID", "Điểm đi", "Điểm đến", "Ngày khởi hành", "Số ghế trống", "Trạng thái", "Giá vé"};
+        tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -141,51 +96,51 @@ public class ListFlightPanel extends JPanel {
         JScrollPane scrollPaneListFlight = new JScrollPane(tableListFlight);
         scrollPaneListFlight.setBounds(50, 160, 610, 339);
         add(scrollPaneListFlight);
-		
-		
-		//Cơ chế lấy mã chuyến bay người dùng đã chọn
-		tableListFlight.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				int selectedRow = tableListFlight.getSelectedRow(); 
-				if(selectedRow != -1) {
-					idFlight = tableListFlight.getValueAt(selectedRow, 0).toString();
-					startPoint = tableListFlight.getValueAt(selectedRow, 1).toString();
-					endPoint = tableListFlight.getValueAt(selectedRow, 2).toString();
-					String dateString = tableListFlight.getValueAt(selectedRow, 3).toString();
-					String format = "yyyy-MM-dd"; 
-					try {
-						dateStart = convertStringToDate(dateString, format);
-			        } catch (ParseException e1) {
-			            e1.printStackTrace();
-			        }
-					NumberOfSeat = (int) tableListFlight.getValueAt(selectedRow, 4);
-					status = tableListFlight.getValueAt(selectedRow, 5).toString();
-					price = (int) tableListFlight.getValueAt(selectedRow, 6);
-					flight = new Flight(idFlight, startPoint, endPoint, dateStart, NumberOfSeat, status, price); 
-					acceptable = true; 
-				} 
-			}
-		});
-		
-		JButton buttonSelectFlight = new JButton("Chọn chuyến");
-		buttonSelectFlight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(acceptable) {
-					setVisible(false); 
-					MainPage.fillInformationPanel.setVisible(true); 
-					MainPage.panelPay.setFlight(flight); 
-				}else {
-					JOptionPane.showMessageDialog(null, "Bạn chưa chọn chuyến muốn đi", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		});
-		buttonSelectFlight.setFont(new Font("Arial", Font.BOLD, 15));
-		buttonSelectFlight.setBounds(529, 549, 131, 40);
-		add(buttonSelectFlight);
-		
-		JButton buttonSearch = new JButton("Search");
+
+        // Mechanism to retrieve the selected flight ID by the user
+        tableListFlight.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int selectedRow = tableListFlight.getSelectedRow();
+                if (selectedRow != -1) {
+                    idFlight = tableListFlight.getValueAt(selectedRow, 0).toString();
+                    startPoint = tableListFlight.getValueAt(selectedRow, 1).toString();
+                    endPoint = tableListFlight.getValueAt(selectedRow, 2).toString();
+                    String dateString = tableListFlight.getValueAt(selectedRow, 3).toString();
+                    String format = "yyyy-MM-dd";
+                    try {
+                        dateStart = convertStringToDate(dateString, format);
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                    NumberOfSeat = (int) tableListFlight.getValueAt(selectedRow, 4);
+                    status = tableListFlight.getValueAt(selectedRow, 5).toString();
+                    price = (int) tableListFlight.getValueAt(selectedRow, 6);
+                    flight = new Flight(idFlight, startPoint, endPoint, dateStart, NumberOfSeat, status, price);
+                    acceptable = true;
+                }
+            }
+        });
+
+        // Button to select a flight
+        JButton buttonSelectFlight = new JButton("Chọn chuyến");
+        buttonSelectFlight.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acceptable) {
+                    setVisible(false);
+                    MainPage.fillInformationPanel.setVisible(true);
+                    MainPage.panelPay.setFlight(flight);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Bạn chưa chọn chuyến muốn đi", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        buttonSelectFlight.setFont(new Font("Arial", Font.BOLD, 15));
+        buttonSelectFlight.setBounds(529, 549, 131, 40);
+        add(buttonSelectFlight);
+
+        // Button to initiate the flight search
+        JButton buttonSearch = new JButton("Search");
         buttonSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchFlights();
@@ -193,10 +148,11 @@ public class ListFlightPanel extends JPanel {
         });
         buttonSearch.setFont(new Font("Arial", Font.BOLD, 15));
         buttonSearch.setBounds(555, 70, 105, 40);
-        add(buttonSearch);	
-	}
-	
-	private void searchFlights() {
+        add(buttonSearch);
+    }
+
+    // Method to search for available flights based on user input
+    private void searchFlights() {
         Connection connection = null;
         PreparedStatement statement = null;
         List<Flight> flights = new ArrayList<>();
@@ -215,7 +171,7 @@ public class ListFlightPanel extends JPanel {
                     LocalDate currentDate = LocalDate.now();
                     LocalDate flightDate = resultSet.getDate("DateStart").toLocalDate();
 
-                    // Kiểm tra số ghế trống và ngày khởi hành
+                    // Check for available seats and future departure dates
                     if (resultSet.getInt("NumberOfSeat") > 0 && flightDate.isAfter(currentDate)) {
                         Flight flight = new Flight(
                                 resultSet.getString("ID"),
@@ -231,11 +187,12 @@ public class ListFlightPanel extends JPanel {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                // Xử lý exception nếu cần
+                // Handle exceptions if needed
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            // Close resources
             if (connection != null) {
                 try {
                     connection.close();
@@ -244,13 +201,12 @@ public class ListFlightPanel extends JPanel {
                 }
             }
             if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-			}
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         // Clear old data in table
@@ -270,33 +226,18 @@ public class ListFlightPanel extends JPanel {
         }
     }
 
-	public String getStartPoint() {
-		return startPoint;
-	}
-
-	public void setStartPoint(String startPoint) {
-		this.startPoint = startPoint;
-	}
-
-	public String getEndPoint() {
-		return endPoint;
-	}
-
-	public void setEndPoint(String endPoint) {
-		this.endPoint = endPoint;
-	}
-
-	public String getIdFlight() {
-		return idFlight;
-	}
-
-	public void setIdFlight(String idFlight) {
-		this.idFlight = idFlight;
-	}
-	public static Date convertStringToDate(String dateString, String format) throws ParseException {
+    /**
+     * Convert a string to a Date object.
+     *
+     * @param dateString The string representing the date.
+     * @param format     The format of the date string.
+     * @return The Date object parsed from the string.
+     * @throws ParseException if the string cannot be parsed as a date.
+     */
+    public static Date convertStringToDate(String dateString, String format) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         java.util.Date parsedDate = dateFormat.parse(dateString);
         return new Date(parsedDate.getTime());
     }
-
 }
+
