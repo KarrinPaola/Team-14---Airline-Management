@@ -128,6 +128,7 @@ public class MainPage extends JFrame {
 				fillInformationPanel.setVisible(false);
 				panelPay.setVisible(false);
 				emptyJPanel.setVisible(false);
+				button_SignOut.setVisible(false);
 			}
 		});
 		buttonBookFlight.setFont(new Font("Arial", Font.BOLD, 22));
@@ -145,6 +146,7 @@ public class MainPage extends JFrame {
 				panelPay.setVisible(false);
 				
 				listFlight.showAllFlight();
+				button_SignOut.setVisible(false);
 			}
 		});
 		buttonListFlight.setFont(new Font("Arial", Font.BOLD, 22));

@@ -65,8 +65,8 @@ public class MainPage extends JFrame {
 		button_SignOut.setVisible(false);
 		button_SignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainPage.setUsername(""); 
-				LoginPage loginPage = new LoginPage(); 
+				AirlineManager.MainPage.setUsername("");
+				User.LoginPage loginPage = new LoginPage(); 
 				loginPage.setVisible(true);
 				dispose();
 			}
@@ -116,6 +116,7 @@ public class MainPage extends JFrame {
 				panelAccount.setVisible(false);
 				panelConfirm.setVisible(false);
 				panelListFlight.setVisible(false);
+				button_SignOut.setVisible(false);
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 25));
@@ -131,6 +132,7 @@ public class MainPage extends JFrame {
 				panelConfirm.setVisible(false);
 				panelListFlight.setVisible(true);
 				panelListFlight.showAllFlight();
+				button_SignOut.setVisible(false);
 			}
 		});
 		btnXemChuyn.setFont(new Font("Arial", Font.BOLD, 25));
@@ -145,6 +147,7 @@ public class MainPage extends JFrame {
 				panelAccount.setVisible(false);
 				panelConfirm.setVisible(true);
 				panelListFlight.setVisible(false);
+				button_SignOut.setVisible(true);
 			}
 		});
 		btnTiKhon.setFont(new Font("Arial", Font.BOLD, 25));

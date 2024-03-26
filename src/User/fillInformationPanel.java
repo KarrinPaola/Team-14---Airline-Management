@@ -84,14 +84,14 @@ public class fillInformationPanel extends JPanel {
 		textFieldName.setColumns(10);
 
 		JComboBox<String> comboBoxDay = new JComboBox<String>();
-		comboBoxDay.setBounds(45, 124, 60, 29);
+		comboBoxDay.setBounds(45, 124, 66, 29);
 		panel.add(comboBoxDay);
 		for (int i = 1; i <= 31; i++) {
 		    comboBoxDay.addItem(String.valueOf(i));
 		}
 
 		JComboBox<String> comboBoxMonth = new JComboBox<String>();
-		comboBoxMonth.setBounds(155, 124, 60, 29);
+		comboBoxMonth.setBounds(155, 124, 66, 29);
 		panel.add(comboBoxMonth);
 		for (int i = 1; i <= 12; i++) {
 		    comboBoxMonth.addItem(String.valueOf(i));
