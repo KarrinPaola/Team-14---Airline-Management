@@ -3,14 +3,15 @@ package User;
 import java.util.Date;
 
 public class FlightxPassenger {
-    private String ID; 
-    private String startPoint; 
-    private String endPoint; 
-    private Date dateStart; 
-    private String classSeat; 
-    private String typeTicket; 
-    private String status; 
+    private String ID; // Mã số chuyến bay
+    private String startPoint; // Điểm khởi hành
+    private String endPoint; // Điểm đến
+    private Date dateStart; // Ngày khởi hành
+    private String classSeat; // Hạng ghế
+    private String typeTicket; // Loại vé
+    private String status; // Trạng thái
 
+    // Hàm khởi tạo
     public FlightxPassenger(String ID, String startPoint, String endPoint, Date dateStart, String classSeat, String typeTicket, String status) {
         this.ID = ID;
         this.startPoint = startPoint;
@@ -21,7 +22,7 @@ public class FlightxPassenger {
         this.status = status;
     }
 
-    // Getter methods
+    // Các phương thức getter
     public String getID() {
         return ID;
     }
@@ -50,7 +51,7 @@ public class FlightxPassenger {
         return status;
     }
 
-    // Setter methods
+    // Các phương thức setter
     public void setID(String ID) {
         this.ID = ID;
     }
@@ -79,4 +80,3 @@ public class FlightxPassenger {
         this.status = status;
     }
 }
-

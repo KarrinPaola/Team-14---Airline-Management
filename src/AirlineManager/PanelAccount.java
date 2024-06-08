@@ -33,7 +33,7 @@ public class PanelAccount extends JPanel {
 	private Flight flight; 
 
 	/**
-	 * Create the panel.
+	 * Tạo panel
 	 */
 	public PanelAccount() {
 		this.setBounds(0, 0, 700, 600);
@@ -117,6 +117,9 @@ public class PanelAccount extends JPanel {
 
 	}
 	
+	/**
+	 * Tạo bảng chứa thông tin chuyến bay trong cơ sở dữ liệu
+	 */
 	public void creatTable() {
         if (flight == null) {
             JOptionPane.showMessageDialog(null, "Không có thông tin chuyến bay.", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -158,14 +161,13 @@ public class PanelAccount extends JPanel {
                 if (option == JOptionPane.YES_OPTION) {
                     setVisible(false);
                     flight = null;
-                    // Assuming there's a method to go back to the main page
+                    // Giả sử có một phương thức để quay lại trang chính
                     goToMainPage();
                 } else if (option == JOptionPane.NO_OPTION) {
                     setVisible(false);
                     flight = null;
-                    // Assuming there's a method to go back to the empty panel
-                    goToEmptyPanel();
-                }
+                    // Giả sử có một phương thức để quay lại panel trống
+                    goToEmptyPanel();                }
             }
 
         } catch (SQLException e) {
@@ -174,32 +176,47 @@ public class PanelAccount extends JPanel {
         }
     }
 
+    /**
+     * Điều hướng quay lại trang chính
+     */
     private void goToMainPage() {
        AirlineManager.MainPage.panelAddNewFlight.setVisible(true);
     }
 
+    /**
+     * Điều hướng quay lại panel trống
+     */
     private void goToEmptyPanel() {
     	AirlineManager.MainPage.emptyJPanel.setVisible(true);
     }
 
-	
-	public void setTextField() {
-		textfieldID.setText(flight.getID());
-		textFieldPointStarting.setText(flight.getStartPoint());
-		textFieldPointEnding.setText(flight.getEndPoint());
-		textFieldDayDeparture.setText(flight.getDateStart().toString());
-		String newPrice = String.format("%d", flight.getPrice()); 
-		textFieldPriceTicket.setText(newPrice);
-		String numberPassenger = String.format("%d", flight.getNumberOfSeat()); 
-		textFieldPassengerNumber.setText(numberPassenger); 
-	}
-	
-	public Flight getFlight() {
-		return flight;
-	}
-	
-	public void setFlight(Flight flight) {
-		this.flight = flight;
-	}
-	
+    /**
+     * Thiết lập các trường nhập liệu với thông tin của chuyến bay
+     */
+    public void setTextField() {
+        textfieldID.setText(flight.getID());
+        textFieldPointStarting.setText(flight.getStartPoint());
+        textFieldPointEnding.setText(flight.getEndPoint());
+        textFieldDayDeparture.setText(flight.getDateStart().toString());
+        String newPrice = String.format("%d", flight.getPrice()); 
+        textFieldPriceTicket.setText(newPrice);
+        String numberPassenger = String.format("%d", flight.getNumberOfSeat()); 
+        textFieldPassengerNumber.setText(numberPassenger); 
+    }
+    
+    /**
+     * Trả về đối tượng chuyến bay
+     */
+    public Flight getFlight() {
+        return flight;
+    }
+    
+    /**
+     * Thiết lập đối tượng chuyến bay
+     */
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+    
 }
+
